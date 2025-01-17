@@ -1,4 +1,4 @@
-##A personal fitness tracker system built with Python.
+## A personal fitness tracker system built with Python.
 
 This project creates Fitness Tracker system that enables users to:
 
