@@ -1,71 +1,68 @@
 # Personal Fitness Tracker System 🏋️‍♂️
 
-# Lists to store fitness data
+
 workouts = []  # To store workout types and durations
 calories = []  # To store calorie intake for meals
 
-# Variables for daily goals
+
 workout_goal = 0  # Daily workout goal in minutes
 calorie_goal = 0  # Daily calorie intake goal
 
 
-def log_workout(workout_type, duration):
-    """
-    Log a workout.
-    - Append the workout type and duration to the workouts list.
-    - Print a confirmation message.
-    """
-    pass
+def log_workout(workout_type, duration): #log workout type and duration
+    workouts.append(workout_type)
+    workouts.append(duration)
+    print(f"{duration} minutes of {workout_type} added successfully!\n")
 
 
-def log_calorie_intake(calories_consumed):
-    """
-    Log calorie intake for a meal.
-    - Append the calorie amount to the calories list.
-    - Print a confirmation message.
-    """
-    pass
+
+def log_calorie_intake(calories_consumed): #log calories intake for current meal
+    calories.append(calories_consumed)
+    print(f"{calories_consumed} calories added!\n")
+
 
 
 def view_progress():
-    """
-    Display a summary of the user's progress for the day.
-    - Calculate the total workout time and total calories.
-    - Print motivational feedback.
-    """
-    pass
+    total_workout_time = 0
+    for i in range(1, len(workouts), 2):
+        total_workout_time += workouts[i]
+    total_calories = sum(calories)
+
+    print(f"Total workout time for today: {total_workout_time} minutes.")
+    print(f"Total calories consumed today: {total_calories} calories.")
+    print("Good results. Keep going!\n")
 
 
-def reset_progress():
-    """
-    Clear all data from the workouts and calories lists.
-    - Print a confirmation message.
-    """
-    pass
+def reset_progress(): #progrss reset
+    workouts.clear()
+    calories.clear()
+    print(f"Your workout and calories logs are clear.")
+
 
 
 def set_daily_goals(workout_minutes, calorie_limit):
-    """
-    Set daily goals for workout time and calorie intake.
-    - Update the global variables workout_goal and calorie_goal.
-    - Print a confirmation message.
-    """
-    pass
+    global workout_goal
+    global calorie_goal
+
+    workout_goal = workout_minutes
+    calorie_goal = calorie_limit
+    print(f"Workout and Calorie goals are set successfully!\n")
+
 
 
 def encouragement_system():
-    """
-    Provide motivational feedback based on progress and goals.
-    - Compare current totals to the daily goals.
-    - Print encouragement messages.
-    """
-    pass
+    total_workout_time = 0
+    for i in range(1, len(workouts), 2):
+        total_workout_time += workouts[i]
+    total_calories = sum(calories)
+
+    workout_percent = round(total_workout_time / workout_goal * 100)
+    calories_percent = round(total_calories / calorie_goal * 100)
+    print(f"You reached {workout_percent}% of daily workout goal and {calories_percent}% of daily calories goal\n")
+    print("Push harder than yesterday if you want a different tomorrow.")
 
 
 def main():
-    """
-    Main function to interact with the user.
-    """
     print("Welcome to the Personal Fitness Tracker System 🏋️‍♂️\n")
 
     while True:
@@ -75,30 +72,69 @@ def main():
         print("3. View Progress")
         print("4. Reset Progress")
         print("5. Set Daily Goals")
-        print("6. Exit")
+        print("6. Check daily progress compared to goals")
+        print("7. Exit")
 
         # Prompt user for their choice
         choice = input("\nEnter your choice: ")
 
+
         if choice == '1':
-            # Prompt for workout type and duration
-            pass
+            type_of_workout = input("Enter the type of workout:")
+            duration_of_workout = int(input("Enter duration of workout in minutes:"))
+            if duration_of_workout <= 0:
+                print("Invalid input. Program is restarting!")
+                continue
+            log_workout(type_of_workout, duration_of_workout)
+
+
         elif choice == '2':
-            # Prompt for calories consumed
-            pass
+            current_calories = int(input("Enter calories for current meal:"))
+            if current_calories <= 0:
+                print("Invalid input. Program is restarting!")
+                continue
+            log_calorie_intake(current_calories)
+
+
         elif choice == '3':
-            # Call view_progress function
-            pass
+            view_progress()
+
+
         elif choice == '4':
-            # Call reset_progress function
-            pass
+            confirmation = input("Are you sure?:")
+            if confirmation.lower() == "yes":
+                reset_progress()
+
+
         elif choice == '5':
-            # Prompt for daily goals
-            pass
+            print("Please enter your daily goals:")
+            minutes = int(input("Workout minutes for today:"))
+            if minutes <= 0:
+                print("Invalid input. Program is restarting!")
+                continue
+            calorie = int(input("Calories to consume today:"))
+
+            if calorie <= 0:
+                print("Invalid input. Program is restarting!")
+                continue
+            set_daily_goals(minutes, calorie)
+
+
         elif choice == '6':
-            # Print a goodbye message and break the loop
+            if workout_goal == 0 or calorie_goal == 0:
+                print("Your daily goals are not set!")
+            elif not workouts:
+                print("You don't have any workouts yet.")
+            elif not calories:
+                print("No meals consumed today.")
+            else:
+                encouragement_system()
+
+
+        elif choice == '7':
             print("Thank you for using the Fitness Tracker. Stay healthy! 💪")
             break
+
         else:
             print("Invalid choice, please try again.")
 
