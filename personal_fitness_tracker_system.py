@@ -12,20 +12,20 @@ workout_goal = 0  # Daily workout goal in minutes
 calorie_goal = 0  # Daily calorie intake goal
 
 
-def log_workout(workout_type, duration): #log workout type and duration
+def log_workout(workout_type: str, duration: int) -> str: #log workout type and duration
     workouts.append(workout_type)
     workouts.append(duration)
     return f"{duration} minutes of {workout_type} added successfully!\n"
 
 
 
-def log_calorie_intake(calories_consumed): #log calories intake for current meal
+def log_calorie_intake(calories_consumed: int) -> str: #log calories intake for current meal
     calories.append(calories_consumed)
     return f"{calories_consumed} calories added!\n"
 
 
 
-def view_progress():
+def view_progress() -> str:
     total_workout_time = 0
     for i in range(1, len(workouts), 2):
         total_workout_time += workouts[i]
@@ -36,14 +36,14 @@ def view_progress():
     \nKeep going!\n"
 
 
-def reset_progress(): #progrss reset
+def reset_progress() -> str: #progrss reset
     workouts.clear()
     calories.clear()
     return f"Your workout and calories logs are clear.\n"
 
 
 
-def set_daily_goals(workout_minutes, calorie_limit):
+def set_daily_goals(workout_minutes: int, calorie_limit: int) -> str:
     global workout_goal
     global calorie_goal
 
@@ -53,7 +53,7 @@ def set_daily_goals(workout_minutes, calorie_limit):
 
 
 
-def encouragement_system():
+def encouragement_system() -> str:
     total_workout_time = 0
     for i in range(1, len(workouts), 2):
         total_workout_time += workouts[i]
