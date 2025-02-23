@@ -1,9 +1,12 @@
 ## A personal fitness tracker system built with Python.
 ### Made by [Milen Nikolov](https://www.linkedin.com/in/milen-nikolov-62455034b/)
 
+![image](https://github.com/user-attachments/assets/7f972173-8c44-4b87-8b5c-15c63a96b89b)
+
+
 This project creates a Fitness Tracker system that enables users to:
 
-<img align="right" width="500" height="500" src="https://st2.depositphotos.com/1007566/5938/v/450/depositphotos_59384119-stock-illustration-fitness-design.jpg">
+
 
 * 🏋 Log workouts and calorie intake - Log every workout type and duration. Log all calories taken for the current day.
 * ䷢ Track daily progress - Receive information about total workout time and total calories for the current day.
